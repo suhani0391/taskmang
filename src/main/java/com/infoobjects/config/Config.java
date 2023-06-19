@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration//than this config class should return bean
 @EnableMethodSecurity
 public class Config {
-    
     private UserDetailsService userDetailsService;
     public Config(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -39,3 +38,96 @@ public class Config {
         return http.build();
     }
 }
+
+
+
+
+
+
+
+
+    // @Bean
+    // SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    //     http.csrf().disable()
+    //             .authorizeHttpRequests((authorize) -> authorize
+
+    //             .requestMatchers("/api/**","/api/auth**").permitAll()
+    //             .anyRequest().authenticated()
+    //             )
+                
+    //             .httpBasic();
+    //     return http.build();
+    // }
+
+
+
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+//     http 
+//     .csrf().disable()
+//     .authorizeHttpRequests((requests)-> requests
+    
+//                     .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+//                     .requestMatchers(HttpMethod.GET,"/api/auth/**").permitAll()
+//                     // .requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
+//                     // .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+//                     .anyRequest().authenticated()
+//                     )
+//     .httpBasic();
+
+//     DefaultSecurityFilterChain build= http.build();
+//         return build;
+    
+    
+//    }
+
+
+    //   @Bean
+    //   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+
+    //     http
+    //             .csrf().disable()
+    //             .authorizeHttpRequests()
+    //             .anyRequest().authenticated()
+    //             .and()
+    //             .httpBasic();
+    //     return http.build();
+        
+    //   }
+
+
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    //     http
+    //             .csrf()
+    //             .disable()
+    //             .authorizeHttpRequests((authorize) -> authorize
+
+    //             .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+    //             .requestMatchers("/api/auth/**").permitAll()
+                
+    //             .requestMatchers(HttpMethod.POST,"/api/**").permitAll()
+    //             .requestMatchers("/api/auth/**").permitAll()
+
+    //             //.requestMatchers(new AntPathRequestMatcher("/public/**")).permitAll()
+
+    //             .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+    //             .anyRequest().authenticated()
+    //             );
+
+    //     http.headers().frameOptions().disable();
+
+    //     DefaultSecurityFilterChain build= http.build();
+    //     return build;
+    // }
+    
+
+
+
+
+
+
+
+
+
