@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 //@Service Annotation is it can be applied only to classes.
 @Service
 public class CustomService implements UserDetailsService {
+
     private UserRepo userRepository;
     public CustomService(UserRepo userRepository) {
         this.userRepository = userRepository;
@@ -21,6 +22,21 @@ public class CustomService implements UserDetailsService {
         User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         "User not found with username or email: " + usernameOrEmail));
-        return null;
+                        return new org.springframework.security.core.userdetails.User(usernameOrEmail, usernameOrEmail, null);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//implements means you are using the elements of a Java Interface in your 
+//class. extends means that you are creating a subclass of the base class you are extending.

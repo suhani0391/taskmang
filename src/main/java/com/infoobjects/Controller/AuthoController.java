@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 @Controller//on presentation layer
@@ -29,6 +30,9 @@ public class AuthoController {
     private UserRepo userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    //@RequestMapping(path = "/signin",method = RequestMethod.POST)
+
     @PostMapping("/signin")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -38,7 +42,7 @@ public class AuthoController {
     }
    // @Requestparam is for fetching the data through a web page
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignupDto signUpDto) {
+    public ResponseEntity<?> registerUser(@RequestBody SignupDto signUpDto) { // RE represent the full http response and RB put return value into the body of res
         // add check for username exists in a DB
         if (userRepository.existsByUsername(signUpDto.getUsername())) {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
@@ -53,9 +57,12 @@ public class AuthoController {
         user.setUsername(signUpDto.getUsername());
         user.setEmail(signUpDto.getEmail());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+        
+        User users = userRepository.findByName("ROLE_ADMIN").get();
+
         // Role roles = roleRepository.findByName("ROLE_ADMIN").get();
         // user.setRoles(Collections.singleton(roles));
         userRepository.save(user);
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        return new ResponseEntity<>("created user", HttpStatus.OK);
     }
 }
